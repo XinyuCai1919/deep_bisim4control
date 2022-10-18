@@ -22,3 +22,4 @@ dependencies:
     - pygame
     - networkx
     - dotmap
+    - gym==0.18.3
