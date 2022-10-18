@@ -20,8 +20,8 @@ from video import VideoRecorder
 from agent.baseline_agent import BaselineAgent
 from agent.bisim_agent import BisimAgent
 from agent.deepmdp_agent import DeepMDPAgent
-from agents.navigation.carla_env import CarlaEnv
-
+# from agents.navigation.carla_env import CarlaEnv
+os.environ['MUJOCO_GL'] = 'osmesa'
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -274,19 +274,20 @@ def main():
     utils.set_seed_everywhere(args.seed)
 
     if args.domain_name == 'carla':
-        env = CarlaEnv(
-            render_display=args.render,  # for local debugging only
-            display_text=args.render,  # for local debugging only
-            changing_weather_speed=0.1,  # [0, +inf)
-            rl_image_size=args.image_size,
-            max_episode_steps=1000,
-            frame_skip=args.action_repeat,
-            is_other_cars=True,
-            port=args.port
-        )
-        # TODO: implement env.seed(args.seed) ?
+#         env = CarlaEnv(
+#             render_display=args.render,  # for local debugging only
+#             display_text=args.render,  # for local debugging only
+#             changing_weather_speed=0.1,  # [0, +inf)
+#             rl_image_size=args.image_size,
+#             max_episode_steps=1000,
+#             frame_skip=args.action_repeat,
+#             is_other_cars=True,
+#             port=args.port
+#         )
+#         # TODO: implement env.seed(args.seed) ?
 
-        eval_env = env
+#         eval_env = env
+        pass
     else:
         env = dmc2gym.make(
             domain_name=args.domain_name,
